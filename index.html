@@ -115,7 +115,7 @@
 
 <div id="stage">
   <div class="grid">
-    <div class="card"><h3>Synthetic event stream</h3><p>Metadata only - entity, position, velocity, zone, timestamp. This is all that ever leaves the site.</p><div id="events" style="margin-top:12px"></div></div>
+    <div class="card"><h3>Synthetic event stream <span style="border:1px solid #fbbf24;color:#fbbf24;border-radius:3px;padding:1px 6px;font-size:10px;font-family:var(--mono);vertical-align:middle">SIM - browser</span></h3><p>Metadata only - entity, position, velocity, zone, timestamp. This is all that ever leaves the site.</p><div id="events" style="margin-top:12px"></div></div>
     <div class="card"><h3>Cloud brain reconstruction</h3><p id="brain" style="font-family:var(--mono);font-size:12.5px;margin-top:12px"></p></div>
   </div>
   <div class="verdict" id="verdict">
@@ -148,12 +148,12 @@
   </div>
 </div>
 
-<h2>04 - Live campus network <span class="tag" style="font-size:10px;vertical-align:middle;border:1px solid var(--warn);color:var(--warn);border-radius:4px;padding:3px 8px;font-family:var(--mono)">ALPHA - SYNTHETIC CONNECTORS</span></h2>
+<h2>04 - Live campus network <span class="tag" style="font-size:10px;vertical-align:middle;border:1px solid #34d399;color:#34d399;border-radius:4px;padding:3px 8px;font-family:var(--mono)">SITE AGENT v0.1 - SIMULATED CAMERAS</span></h2>
 <div class="card">
-  <p style="color:var(--dim);font-size:14px;margin-bottom:12px">Three campus sites stream camera metadata through the connector interface - the same ingest boundary a real VMS/camera API (ONVIF, webhook feeds) will use later. Events persist to a local store, the trigger engine watches every entity, incidents are graded against the 100k corpus, and every outcome lands in a hash-chained audit ledger. Only the source data is synthetic; the pipeline is the product.</p>
+  <p style="color:var(--dim);font-size:14px;margin-bottom:12px">Three campus sites each run a site agent - the same emitter shipped in this repo (<span class="mono" style="color:var(--acc)">site-agent/site_agent.py</span>), here driving simulated cameras in place of live ONVIF/RTSP feeds. The agent gates motion on-site and only anonymous metadata (entity, zone, speed, timestamp) crosses the ingest contract. Every event carries its source: <span style="border:1px solid #34d399;color:#34d399;border-radius:3px;padding:0 5px;font-size:11px;font-family:var(--mono)">EDGE</span> site-agent metadata, <span style="border:1px solid #fbbf24;color:#fbbf24;border-radius:3px;padding:0 5px;font-size:11px;font-family:var(--mono)">SIM</span> browser-generated batch. Events persist to a local store, the trigger engine watches every entity, incidents are graded against the 100k corpus, and every outcome lands in a hash-chained audit ledger.</p>
   <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:12px">
     <button class="run" id="netToggle" style="padding:10px 22px;font-size:13.5px">Connect network</button>
-    <span class="mono" id="netStatus" style="color:var(--dim);font-size:12px">3 sites idle - connectors offline</span>
+    <span class="mono" id="netStatus" style="color:var(--dim);font-size:12px">3 sites idle - site agents offline</span>
   </div>
   <div class="stats" id="netStats">
     <div class="stat"><div class="n" id="stSites">0</div><div class="l">sites streaming</div></div>
@@ -162,6 +162,7 @@
     <div class="stat"><div class="n" id="stRec">0</div><div class="l">signed records</div></div>
     <div class="stat"><div class="n" id="stAudit">0</div><div class="l">audit ledger entries</div></div>
     <div class="stat"><div class="n" id="stPx2">0</div><div class="l">pixels off-site</div></div>
+    <div class="stat"><div class="n" id="stGated">0</div><div class="l">frames gated on-site</div></div>
   </div>
   <div id="netlog" style="margin-top:12px;font-family:var(--mono);font-size:12.5px;max-height:220px;overflow-y:auto"></div>
   <div style="margin-top:14px;display:flex;gap:14px;align-items:center;flex-wrap:wrap">
@@ -186,7 +187,7 @@
   <div class="card"><h3>The claim file lands first.</h3><p>Every incident ships as a signed, auditable record - what happened, the grade, the evidence pointer, the cost band. It reaches the CFO and the insurer while the other side is still requesting footage.</p></div>
 </div>
 
-<footer>CLAIM-READY - working beta. All sites, events, and incidents on this page are synthetic - no real footage anywhere.</footer>
+<footer>CLAIM-READY - working beta. All sites, events, and incidents on this page are synthetic - no real footage anywhere. The shipped site agent (site-agent/) runs the same gating and ingest contract against live ONVIF/RTSP cameras.</footer>
 </div>
 
 <script>
@@ -439,7 +440,15 @@ async function exportRec(){
     return entry;
   }
 
-  // ---- synthetic connectors: campus camera metadata, same ingest boundary as a real VMS API ----
+  // ---- site agents: the same emitter shipped in this repo (site-agent/site_agent.py), ----
+  // ---- simulated cameras here stand in for live ONVIF/RTSP feeds -------------------------
+  const CAMS=[];
+  function spawnSiteAgents(){
+    CAMS.length=0;
+    SITES.forEach((st,si)=>{for(let c=0;c<4;c++)CAMS.push({site:si,cam:'cam'+(c+1),zone:st.zones[c%st.zones.length]});});
+  }
+  let gatedFrames=0,emittedFrames=0;
+  function srcb(ev){const c=ev&&ev.src==='EDGE'?'#34d399':'#fbbf24';return '<span style="border:1px solid '+c+';color:'+c+';border-radius:3px;padding:0 4px;font-size:10px">'+(ev&&ev.src||'SIM')+'</span> ';}
   const SITES=[
     {id:'SITE-014',name:'North Campus - Bldg A',zones:['entrance','aisle','forklift_lane','exit']},
     {id:'SITE-027',name:'Distribution Hub 3',zones:['forklift_lane','parking','aisle','exit']},
@@ -457,9 +466,22 @@ async function exportRec(){
     SITES.forEach((st,si)=>{for(let k=0;k<4;k++)AGENTS.push({site:si,ent:'person_'+(si*10+k),zone:st.zones[0],speed:1.2+Math.random()*0.4,stopT:0});});
   }
   function connectorTick(){
-    // one emitter per site - this function is the ONLY thing a real connector replaces
+    // The ONLY seam a live deployment touches: swap the simulated cameras below
+    // for RTSP frames and this function is site_agent.py running on the edge box.
     tick++;
     const batch=[];
+    // each camera runs 30 frames through the on-site motion gate per tick;
+    // only motion crosses (~1 in 100 frames) - the rest never leave the site
+    for(const cam of CAMS){
+      const st=SITES[cam.site];
+      for(let f=0;f<30;f++){
+        if(Math.random()<0.01){
+          emittedFrames++;
+          batch.push({t:tick*30+f,site:st.id,cam:cam.cam,entity:'motion@'+cam.cam,zone:cam.zone,speed:+(0.4+Math.random()*1.8).toFixed(1),src:'EDGE'});
+        }else gatedFrames++;
+      }
+    }
+    // tracked entities (the 4D signal) ride the same site-agent feed
     for(const a of AGENTS){
       const st=SITES[a.site];
       if(Math.random()<0.15)a.zone=st.zones[Math.floor(Math.random()*st.zones.length)];
@@ -468,7 +490,7 @@ async function exportRec(){
       else if(a.stopT&&tick-a.stopT>6){a.speed=1.1+Math.random()*0.5;a.stopT=0;}
       else if(Math.random()<0.004){a.speed=2.6+Math.random();a.zone='exit';} // fast exit (theft pattern)
       else if(!a.stopT)a.speed=Math.max(0.2,Math.min(2.0,a.speed+(Math.random()-0.5)*0.3));
-      batch.push({t:tick,site:st.id,entity:a.ent,zone:a.zone,speed:+a.speed.toFixed(1)});
+      batch.push({t:tick,site:st.id,cam:'cam'+(1+(a.site%4)),entity:a.ent,zone:a.zone,speed:+a.speed.toFixed(1),src:'EDGE'});
     }
     return batch;
   }
@@ -512,10 +534,10 @@ async function exportRec(){
         rec.signature={algorithm:'SHA-256 over record body'};
         await put('records',rec);
         await audit('incident.graded',rec);
-        line('INCIDENT',ev.site+' '+ev.entity+' sudden stop in '+ev.zone.replace(/_/g,' ')+' -> '+(g?g.type.replace(/_/g,' ')+' ('+(g.type_share*100).toFixed(0)+'%)':'ungraded')+' - record '+rec.record_id+' - 4D track '+tr.length+'pts/'+(span*0.9).toFixed(0)+'s','#f87171');
+        line('INCIDENT',srcb(ev)+ev.site+' '+ev.entity+' sudden stop in '+ev.zone.replace(/_/g,' ')+' -> '+(g?g.type.replace(/_/g,' ')+' ('+(g.type_share*100).toFixed(0)+'%)':'ungraded')+' - record '+rec.record_id+' - 4D track '+tr.length+'pts/'+(span*0.9).toFixed(0)+'s','#f87171');
       }else if(prev!==undefined&&prev>2.2&&ev.zone==='exit'){
         await audit('event.fast_exit',ev);
-        line('WATCH',ev.site+' '+ev.entity+' fast exit '+(+prev).toFixed(1)+' m/s - audit note written','#fbbf24');
+        line('WATCH',srcb(ev)+ev.site+' '+ev.entity+' fast exit '+(+prev).toFixed(1)+' m/s - audit note written','#fbbf24');
       }
     }
   }
@@ -532,7 +554,7 @@ async function exportRec(){
       if(Math.random()<0.002&&a.speed>0.8){a.speed=0.0;a.stopT=t0;}
       else if(a.stopT&&t0-a.stopT>6){a.speed=1.1+Math.random()*0.5;a.stopT=0;}
       else if(!a.stopT)a.speed=Math.max(0.2,Math.min(2.0,a.speed+(Math.random()-0.5)*0.3));
-      batch.push({t:t0,site:st.id,entity:a.ent,zone:a.zone,speed:+a.speed.toFixed(1),backfilled:true});
+      batch.push({t:t0,site:st.id,entity:a.ent,zone:a.zone,speed:+a.speed.toFixed(1),backfilled:true,src:'SIM'});
       t0++;
     }
     sims.forEach((a,i)=>Object.assign(a,saved[i]));
@@ -548,16 +570,17 @@ async function exportRec(){
     $('stEvents').textContent=await count('events');
     const rc=await count('records');$('stRec').textContent=rc;$('stInc').textContent=rc;
     $('stAudit').textContent=await count('audit');
+    $('stGated').textContent=gatedFrames.toLocaleString();
   }
   document.getElementById('netToggle').onclick=async function(){
-    if(!db){db=await openDB();spawnAgents();
+    if(!db){db=await openDB();spawnAgents();spawnSiteAgents();
       const a=await all('audit');if(a.length)prevHash=a[a.length-1].hash;
       line('STORE','persistent store open - '+await count('events')+' events, '+await count('records')+' records, '+await count('audit')+' audit entries from prior sessions');}
     if(running){running=false;clearInterval(timer);this.textContent='Connect network';
-      $('netStatus').textContent='connectors offline - data persists locally';refreshStats();return;}
+      $('netStatus').textContent='site agents offline - data persists locally';refreshStats();return;}
     running=true;this.textContent='Disconnect';
-    $('netStatus').textContent='LIVE - 3 synthetic connectors streaming (metadata only)';
-    line('CONNECT','3 sites online - synthetic camera connectors emitting through the VMS-shaped ingest interface');
+    $('netStatus').textContent='LIVE - 3 site agents / 12 cameras - on-site gating, metadata only';
+    line('CONNECT','3 site agents online - 12 cameras gated on-site, EDGE metadata streaming through the ingest contract');
     await audit('network.connected',{sites:SITES.map(s=>s.id)});
     timer=setInterval(async()=>{const b=connectorTick();await ingest(b);refreshStats();},900);
     refreshStats();
@@ -573,7 +596,7 @@ async function exportRec(){
     this.disabled=true;this.textContent='Backfilling...';
     const r=await backfillBatch();
     await audit('network.backfill',{events:r.events,incidents:r.incidents,window:'24h synthetic'});
-    line('BATCH',r.events.toLocaleString()+' historical events (24h) ingested through the same connector interface - '+r.incidents+' incidents graded and signed','#38bdf8');
+    line('BATCH',srcb({src:'SIM'})+r.events.toLocaleString()+' historical events (24h) ingested through the same ingest interface - '+r.incidents+' incidents graded and signed','#38bdf8');
     this.disabled=false;this.textContent='Backfill 24h batch';
     refreshStats();
   };
