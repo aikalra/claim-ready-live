@@ -1,0 +1,235 @@
+{
+ "dataset": "claim-ready venue-grading reference",
+ "derived_from_scale": 100000,
+ "seed": 2026,
+ "corpus_hash": "80fbf432459e6a5d610ae328400b69913b6b09b5507d7f35d747197cbe147a05",
+ "grader_accuracy": 0.9858,
+ "zones": [
+  "aisle",
+  "bar_area",
+  "entrance",
+  "exit",
+  "forklift_lane",
+  "kitchen",
+  "parking",
+  "restroom_corridor"
+ ],
+ "cells": {
+  "aisle|1": {
+   "n": 5631,
+   "types": {
+    "slip_and_fall": 4205,
+    "after_hours_intrusion": 1426
+   },
+   "liability": {
+    "premises liability - maintenance/signage window": 4205,
+    "security negligence exposure - patrol gap": 1426
+   },
+   "mean_confidence": 0.925
+  },
+  "parking|0": {
+   "n": 6859,
+   "types": {
+    "near_miss_pedestrian": 5120,
+    "after_hours_intrusion": 1706,
+    "customer_altercation": 33
+   },
+   "liability": {
+    "safety program exposure - route crosses live lane": 5120,
+    "security negligence exposure - patrol gap": 1706,
+    "liquor liability exposure - overserve pattern": 33
+   },
+   "mean_confidence": 0.925
+  },
+  "kitchen|1": {
+   "n": 5681,
+   "types": {
+    "slip_and_fall": 4299,
+    "after_hours_intrusion": 1382
+   },
+   "liability": {
+    "premises liability - maintenance/signage window": 4299,
+    "security negligence exposure - patrol gap": 1382
+   },
+   "mean_confidence": 0.925
+  },
+  "kitchen|0": {
+   "n": 6753,
+   "types": {
+    "slip_and_fall": 4982,
+    "after_hours_intrusion": 1739,
+    "customer_altercation": 32
+   },
+   "liability": {
+    "premises liability - maintenance/signage window": 4982,
+    "security negligence exposure - patrol gap": 1739,
+    "liquor liability exposure - overserve pattern": 32
+   },
+   "mean_confidence": 0.925
+  },
+  "bar_area|0": {
+   "n": 6897,
+   "types": {
+    "slip_and_fall": 5135,
+    "after_hours_intrusion": 1734,
+    "customer_altercation": 28
+   },
+   "liability": {
+    "premises liability - maintenance/signage window": 5135,
+    "security negligence exposure - patrol gap": 1734,
+    "liquor liability exposure - overserve pattern": 28
+   },
+   "mean_confidence": 0.925
+  },
+  "aisle|0": {
+   "n": 6854,
+   "types": {
+    "slip_and_fall": 5068,
+    "after_hours_intrusion": 1755,
+    "customer_altercation": 31
+   },
+   "liability": {
+    "premises liability - maintenance/signage window": 5068,
+    "security negligence exposure - patrol gap": 1755,
+    "liquor liability exposure - overserve pattern": 31
+   },
+   "mean_confidence": 0.925
+  },
+  "bar_area|1": {
+   "n": 5749,
+   "types": {
+    "slip_and_fall": 3860,
+    "after_hours_intrusion": 1410,
+    "customer_altercation": 479
+   },
+   "liability": {
+    "premises liability - maintenance/signage window": 3860,
+    "security negligence exposure - patrol gap": 1410,
+    "liquor liability exposure - overserve pattern": 479
+   },
+   "mean_confidence": 0.925
+  },
+  "entrance|1": {
+   "n": 5718,
+   "types": {
+    "slip_and_fall": 4248,
+    "after_hours_intrusion": 1470
+   },
+   "liability": {
+    "premises liability - maintenance/signage window": 4248,
+    "security negligence exposure - patrol gap": 1470
+   },
+   "mean_confidence": 0.925
+  },
+  "exit|0": {
+   "n": 6783,
+   "types": {
+    "slip_and_fall": 4982,
+    "after_hours_intrusion": 1660,
+    "theft": 109,
+    "customer_altercation": 32
+   },
+   "liability": {
+    "premises liability - maintenance/signage window": 4982,
+    "security negligence exposure - patrol gap": 1660,
+    "property loss - access control gap": 109,
+    "liquor liability exposure - overserve pattern": 32
+   },
+   "mean_confidence": 0.925
+  },
+  "forklift_lane|1": {
+   "n": 5751,
+   "types": {
+    "near_miss_pedestrian": 4305,
+    "after_hours_intrusion": 1446
+   },
+   "liability": {
+    "safety program exposure - route crosses live lane": 4305,
+    "security negligence exposure - patrol gap": 1446
+   },
+   "mean_confidence": 0.925
+  },
+  "entrance|0": {
+   "n": 6817,
+   "types": {
+    "slip_and_fall": 5034,
+    "after_hours_intrusion": 1750,
+    "customer_altercation": 33
+   },
+   "liability": {
+    "premises liability - maintenance/signage window": 5034,
+    "security negligence exposure - patrol gap": 1750,
+    "liquor liability exposure - overserve pattern": 33
+   },
+   "mean_confidence": 0.925
+  },
+  "restroom_corridor|1": {
+   "n": 5680,
+   "types": {
+    "slip_and_fall": 4238,
+    "after_hours_intrusion": 1442
+   },
+   "liability": {
+    "premises liability - maintenance/signage window": 4238,
+    "security negligence exposure - patrol gap": 1442
+   },
+   "mean_confidence": 0.925
+  },
+  "parking|1": {
+   "n": 5590,
+   "types": {
+    "near_miss_pedestrian": 4122,
+    "after_hours_intrusion": 1442,
+    "customer_altercation": 26
+   },
+   "liability": {
+    "safety program exposure - route crosses live lane": 4122,
+    "security negligence exposure - patrol gap": 1442,
+    "liquor liability exposure - overserve pattern": 26
+   },
+   "mean_confidence": 0.925
+  },
+  "exit|1": {
+   "n": 5549,
+   "types": {
+    "slip_and_fall": 4042,
+    "after_hours_intrusion": 1409,
+    "theft": 77,
+    "customer_altercation": 21
+   },
+   "liability": {
+    "premises liability - maintenance/signage window": 4042,
+    "security negligence exposure - patrol gap": 1409,
+    "property loss - access control gap": 77,
+    "liquor liability exposure - overserve pattern": 21
+   },
+   "mean_confidence": 0.926
+  },
+  "restroom_corridor|0": {
+   "n": 6850,
+   "types": {
+    "slip_and_fall": 5023,
+    "after_hours_intrusion": 1795,
+    "customer_altercation": 32
+   },
+   "liability": {
+    "premises liability - maintenance/signage window": 5023,
+    "security negligence exposure - patrol gap": 1795,
+    "liquor liability exposure - overserve pattern": 32
+   },
+   "mean_confidence": 0.925
+  },
+  "forklift_lane|0": {
+   "n": 6838,
+   "types": {
+    "safety_breach_vehicle_zone": 5094,
+    "after_hours_intrusion": 1744
+   },
+   "liability": {
+    "safety program exposure - no spotter": 5094,
+    "security negligence exposure - patrol gap": 1744
+   },
+   "mean_confidence": 0.925
+  }
+ }
+}

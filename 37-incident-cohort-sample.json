@@ -1,0 +1,1063 @@
+{
+ "dataset": "claim-ready synthetic venue-incident corpus",
+ "generator_version": 2,
+ "causal": "hour/zone/motion signals determine incident type via rule (see classify())",
+ "scale": 100000,
+ "seed": 2026,
+ "records": 100000,
+ "grader_accuracy": 0.9858,
+ "accuracy_target": 0.986,
+ "corpus_hash": "80fbf432459e6a5d610ae328400b69913b6b09b5507d7f35d747197cbe147a05",
+ "sample": [
+  {
+   "incident_id": "SYN-V-000000",
+   "site_id": "SITE-438",
+   "venue_type": "corporate_hq",
+   "timestamp": "2026-09-09T16:43:10Z",
+   "structured_events": 10,
+   "pixels_off_site": 0,
+   "signals": {
+    "hour": 16,
+    "zone": "aisle",
+    "max_speed_m_s": 2.5,
+    "stop_detected": true,
+    "dwell_s": 174
+   },
+   "ground_truth": {
+    "incident_type": "slip_and_fall",
+    "liability_read": "premises liability - maintenance/signage window",
+    "confidence": 0.91
+   },
+   "grader_matches_truth": true
+  },
+  {
+   "incident_id": "SYN-V-000001",
+   "site_id": "SITE-602",
+   "venue_type": "distribution_center",
+   "timestamp": "2026-09-07T23:17:37Z",
+   "structured_events": 4,
+   "pixels_off_site": 0,
+   "signals": {
+    "hour": 23,
+    "zone": "parking",
+    "max_speed_m_s": 2.4,
+    "stop_detected": false,
+    "dwell_s": 48
+   },
+   "ground_truth": {
+    "incident_type": "after_hours_intrusion",
+    "liability_read": "security negligence exposure - patrol gap",
+    "confidence": 0.9
+   },
+   "grader_matches_truth": true
+  },
+  {
+   "incident_id": "SYN-V-000002",
+   "site_id": "SITE-645",
+   "venue_type": "bar",
+   "timestamp": "2026-09-01T05:36:37Z",
+   "structured_events": 5,
+   "pixels_off_site": 0,
+   "signals": {
+    "hour": 5,
+    "zone": "parking",
+    "max_speed_m_s": 2.3,
+    "stop_detected": false,
+    "dwell_s": 12
+   },
+   "ground_truth": {
+    "incident_type": "near_miss_pedestrian",
+    "liability_read": "safety program exposure - route crosses live lane",
+    "confidence": 0.9
+   },
+   "grader_matches_truth": true
+  },
+  {
+   "incident_id": "SYN-V-000003",
+   "site_id": "SITE-984",
+   "venue_type": "hospital",
+   "timestamp": "2026-09-07T18:18:17Z",
+   "structured_events": 13,
+   "pixels_off_site": 0,
+   "signals": {
+    "hour": 18,
+    "zone": "kitchen",
+    "max_speed_m_s": 1.1,
+    "stop_detected": true,
+    "dwell_s": 86
+   },
+   "ground_truth": {
+    "incident_type": "slip_and_fall",
+    "liability_read": "premises liability - maintenance/signage window",
+    "confidence": 0.89
+   },
+   "grader_matches_truth": true
+  },
+  {
+   "incident_id": "SYN-V-000004",
+   "site_id": "SITE-339",
+   "venue_type": "corporate_hq",
+   "timestamp": "2026-09-09T23:14:38Z",
+   "structured_events": 5,
+   "pixels_off_site": 0,
+   "signals": {
+    "hour": 23,
+    "zone": "kitchen",
+    "max_speed_m_s": 3.2,
+    "stop_detected": false,
+    "dwell_s": 287
+   },
+   "ground_truth": {
+    "incident_type": "after_hours_intrusion",
+    "liability_read": "security negligence exposure - patrol gap",
+    "confidence": 0.92
+   },
+   "grader_matches_truth": true
+  },
+  {
+   "incident_id": "SYN-V-000005",
+   "site_id": "SITE-096",
+   "venue_type": "corporate_hq",
+   "timestamp": "2026-09-06T10:15:12Z",
+   "structured_events": 5,
+   "pixels_off_site": 0,
+   "signals": {
+    "hour": 10,
+    "zone": "bar_area",
+    "max_speed_m_s": 1.7,
+    "stop_detected": false,
+    "dwell_s": 244
+   },
+   "ground_truth": {
+    "incident_type": "slip_and_fall",
+    "liability_read": "premises liability - maintenance/signage window",
+    "confidence": 0.91
+   },
+   "grader_matches_truth": true
+  },
+  {
+   "incident_id": "SYN-V-000006",
+   "site_id": "SITE-919",
+   "venue_type": "retail",
+   "timestamp": "2026-09-04T17:11:29Z",
+   "structured_events": 4,
+   "pixels_off_site": 0,
+   "signals": {
+    "hour": 17,
+    "zone": "kitchen",
+    "max_speed_m_s": 3.0,
+    "stop_detected": false,
+    "dwell_s": 244
+   },
+   "ground_truth": {
+    "incident_type": "slip_and_fall",
+    "liability_read": "premises liability - maintenance/signage window",
+    "confidence": 0.89
+   },
+   "grader_matches_truth": true
+  },
+  {
+   "incident_id": "SYN-V-000007",
+   "site_id": "SITE-910",
+   "venue_type": "corporate_hq",
+   "timestamp": "2026-09-07T12:38:13Z",
+   "structured_events": 11,
+   "pixels_off_site": 0,
+   "signals": {
+    "hour": 12,
+    "zone": "aisle",
+    "max_speed_m_s": 2.4,
+    "stop_detected": false,
+    "dwell_s": 83
+   },
+   "ground_truth": {
+    "incident_type": "slip_and_fall",
+    "liability_read": "premises liability - maintenance/signage window",
+    "confidence": 0.93
+   },
+   "grader_matches_truth": true
+  },
+  {
+   "incident_id": "SYN-V-000008",
+   "site_id": "SITE-739",
+   "venue_type": "hotel",
+   "timestamp": "2026-09-08T04:45:56Z",
+   "structured_events": 6,
+   "pixels_off_site": 0,
+   "signals": {
+    "hour": 4,
+    "zone": "parking",
+    "max_speed_m_s": 2.1,
+    "stop_detected": false,
+    "dwell_s": 33
+   },
+   "ground_truth": {
+    "incident_type": "after_hours_intrusion",
+    "liability_read": "security negligence exposure - patrol gap",
+    "confidence": 0.94
+   },
+   "grader_matches_truth": true
+  },
+  {
+   "incident_id": "SYN-V-000009",
+   "site_id": "SITE-546",
+   "venue_type": "bar",
+   "timestamp": "2026-09-06T04:41:34Z",
+   "structured_events": 4,
+   "pixels_off_site": 0,
+   "signals": {
+    "hour": 4,
+    "zone": "bar_area",
+    "max_speed_m_s": 0.9,
+    "stop_detected": true,
+    "dwell_s": 133
+   },
+   "ground_truth": {
+    "incident_type": "after_hours_intrusion",
+    "liability_read": "security negligence exposure - patrol gap",
+    "confidence": 0.89
+   },
+   "grader_matches_truth": true
+  },
+  {
+   "incident_id": "SYN-V-000010",
+   "site_id": "SITE-147",
+   "venue_type": "retail",
+   "timestamp": "2026-09-03T10:25:31Z",
+   "structured_events": 7,
+   "pixels_off_site": 0,
+   "signals": {
+    "hour": 10,
+    "zone": "aisle",
+    "max_speed_m_s": 2.5,
+    "stop_detected": false,
+    "dwell_s": 69
+   },
+   "ground_truth": {
+    "incident_type": "slip_and_fall",
+    "liability_read": "premises liability - maintenance/signage window",
+    "confidence": 0.96
+   },
+   "grader_matches_truth": true
+  },
+  {
+   "incident_id": "SYN-V-000011",
+   "site_id": "SITE-369",
+   "venue_type": "hotel",
+   "timestamp": "2026-09-08T23:05:00Z",
+   "structured_events": 9,
+   "pixels_off_site": 0,
+   "signals": {
+    "hour": 23,
+    "zone": "aisle",
+    "max_speed_m_s": 0.5,
+    "stop_detected": false,
+    "dwell_s": 15
+   },
+   "ground_truth": {
+    "incident_type": "after_hours_intrusion",
+    "liability_read": "security negligence exposure - patrol gap",
+    "confidence": 0.9
+   },
+   "grader_matches_truth": true
+  },
+  {
+   "incident_id": "SYN-V-000012",
+   "site_id": "SITE-583",
+   "venue_type": "hotel",
+   "timestamp": "2026-09-09T03:49:13Z",
+   "structured_events": 7,
+   "pixels_off_site": 0,
+   "signals": {
+    "hour": 3,
+    "zone": "aisle",
+    "max_speed_m_s": 2.4,
+    "stop_detected": false,
+    "dwell_s": 24
+   },
+   "ground_truth": {
+    "incident_type": "after_hours_intrusion",
+    "liability_read": "security negligence exposure - patrol gap",
+    "confidence": 0.95
+   },
+   "grader_matches_truth": true
+  },
+  {
+   "incident_id": "SYN-V-000013",
+   "site_id": "SITE-409",
+   "venue_type": "school",
+   "timestamp": "2026-09-04T02:53:29Z",
+   "structured_events": 12,
+   "pixels_off_site": 0,
+   "signals": {
+    "hour": 2,
+    "zone": "entrance",
+    "max_speed_m_s": 0.6,
+    "stop_detected": true,
+    "dwell_s": 235
+   },
+   "ground_truth": {
+    "incident_type": "after_hours_intrusion",
+    "liability_read": "security negligence exposure - patrol gap",
+    "confidence": 0.92
+   },
+   "grader_matches_truth": true
+  },
+  {
+   "incident_id": "SYN-V-000014",
+   "site_id": "SITE-898",
+   "venue_type": "restaurant",
+   "timestamp": "2026-09-08T13:38:35Z",
+   "structured_events": 13,
+   "pixels_off_site": 0,
+   "signals": {
+    "hour": 13,
+    "zone": "aisle",
+    "max_speed_m_s": 0.3,
+    "stop_detected": false,
+    "dwell_s": 299
+   },
+   "ground_truth": {
+    "incident_type": "slip_and_fall",
+    "liability_read": "premises liability - maintenance/signage window",
+    "confidence": 0.96
+   },
+   "grader_matches_truth": true
+  },
+  {
+   "incident_id": "SYN-V-000015",
+   "site_id": "SITE-796",
+   "venue_type": "hotel",
+   "timestamp": "2026-09-08T00:04:17Z",
+   "structured_events": 6,
+   "pixels_off_site": 0,
+   "signals": {
+    "hour": 0,
+    "zone": "entrance",
+    "max_speed_m_s": 2.4,
+    "stop_detected": true,
+    "dwell_s": 259
+   },
+   "ground_truth": {
+    "incident_type": "after_hours_intrusion",
+    "liability_read": "security negligence exposure - patrol gap",
+    "confidence": 0.9
+   },
+   "grader_matches_truth": true
+  },
+  {
+   "incident_id": "SYN-V-000016",
+   "site_id": "SITE-473",
+   "venue_type": "hospital",
+   "timestamp": "2026-09-05T19:01:40Z",
+   "structured_events": 4,
+   "pixels_off_site": 0,
+   "signals": {
+    "hour": 19,
+    "zone": "aisle",
+    "max_speed_m_s": 1.8,
+    "stop_detected": true,
+    "dwell_s": 277
+   },
+   "ground_truth": {
+    "incident_type": "slip_and_fall",
+    "liability_read": "premises liability - maintenance/signage window",
+    "confidence": 0.91
+   },
+   "grader_matches_truth": true
+  },
+  {
+   "incident_id": "SYN-V-000017",
+   "site_id": "SITE-703",
+   "venue_type": "retail",
+   "timestamp": "2026-09-05T09:24:43Z",
+   "structured_events": 4,
+   "pixels_off_site": 0,
+   "signals": {
+    "hour": 9,
+    "zone": "exit",
+    "max_speed_m_s": 1.2,
+    "stop_detected": false,
+    "dwell_s": 227
+   },
+   "ground_truth": {
+    "incident_type": "slip_and_fall",
+    "liability_read": "premises liability - maintenance/signage window",
+    "confidence": 0.92
+   },
+   "grader_matches_truth": true
+  },
+  {
+   "incident_id": "SYN-V-000018",
+   "site_id": "SITE-943",
+   "venue_type": "restaurant",
+   "timestamp": "2026-09-08T20:07:23Z",
+   "structured_events": 4,
+   "pixels_off_site": 0,
+   "signals": {
+    "hour": 20,
+    "zone": "forklift_lane",
+    "max_speed_m_s": 1.5,
+    "stop_detected": true,
+    "dwell_s": 154
+   },
+   "ground_truth": {
+    "incident_type": "near_miss_pedestrian",
+    "liability_read": "safety program exposure - route crosses live lane",
+    "confidence": 0.91
+   },
+   "grader_matches_truth": true
+  },
+  {
+   "incident_id": "SYN-V-000019",
+   "site_id": "SITE-679",
+   "venue_type": "hotel",
+   "timestamp": "2026-09-03T12:25:16Z",
+   "structured_events": 9,
+   "pixels_off_site": 0,
+   "signals": {
+    "hour": 12,
+    "zone": "entrance",
+    "max_speed_m_s": 3.1,
+    "stop_detected": true,
+    "dwell_s": 118
+   },
+   "ground_truth": {
+    "incident_type": "slip_and_fall",
+    "liability_read": "premises liability - maintenance/signage window",
+    "confidence": 0.96
+   },
+   "grader_matches_truth": true
+  },
+  {
+   "incident_id": "SYN-V-000020",
+   "site_id": "SITE-018",
+   "venue_type": "bar",
+   "timestamp": "2026-09-06T00:23:55Z",
+   "structured_events": 7,
+   "pixels_off_site": 0,
+   "signals": {
+    "hour": 0,
+    "zone": "aisle",
+    "max_speed_m_s": 2.6,
+    "stop_detected": false,
+    "dwell_s": 186
+   },
+   "ground_truth": {
+    "incident_type": "after_hours_intrusion",
+    "liability_read": "security negligence exposure - patrol gap",
+    "confidence": 0.97
+   },
+   "grader_matches_truth": true
+  },
+  {
+   "incident_id": "SYN-V-000021",
+   "site_id": "SITE-080",
+   "venue_type": "restaurant",
+   "timestamp": "2026-09-05T14:08:43Z",
+   "structured_events": 6,
+   "pixels_off_site": 0,
+   "signals": {
+    "hour": 14,
+    "zone": "forklift_lane",
+    "max_speed_m_s": 3.2,
+    "stop_detected": true,
+    "dwell_s": 281
+   },
+   "ground_truth": {
+    "incident_type": "near_miss_pedestrian",
+    "liability_read": "safety program exposure - route crosses live lane",
+    "confidence": 0.9
+   },
+   "grader_matches_truth": true
+  },
+  {
+   "incident_id": "SYN-V-000022",
+   "site_id": "SITE-121",
+   "venue_type": "hotel",
+   "timestamp": "2026-09-02T21:12:13Z",
+   "structured_events": 8,
+   "pixels_off_site": 0,
+   "signals": {
+    "hour": 21,
+    "zone": "bar_area",
+    "max_speed_m_s": 1.9,
+    "stop_detected": true,
+    "dwell_s": 174
+   },
+   "ground_truth": {
+    "incident_type": "slip_and_fall",
+    "liability_read": "premises liability - maintenance/signage window",
+    "confidence": 0.93
+   },
+   "grader_matches_truth": true
+  },
+  {
+   "incident_id": "SYN-V-000023",
+   "site_id": "SITE-337",
+   "venue_type": "distribution_center",
+   "timestamp": "2026-09-04T01:30:26Z",
+   "structured_events": 10,
+   "pixels_off_site": 0,
+   "signals": {
+    "hour": 1,
+    "zone": "exit",
+    "max_speed_m_s": 0.7,
+    "stop_detected": false,
+    "dwell_s": 33
+   },
+   "ground_truth": {
+    "incident_type": "after_hours_intrusion",
+    "liability_read": "security negligence exposure - patrol gap",
+    "confidence": 0.92
+   },
+   "grader_matches_truth": true
+  },
+  {
+   "incident_id": "SYN-V-000024",
+   "site_id": "SITE-959",
+   "venue_type": "retail",
+   "timestamp": "2026-09-03T06:32:52Z",
+   "structured_events": 4,
+   "pixels_off_site": 0,
+   "signals": {
+    "hour": 6,
+    "zone": "entrance",
+    "max_speed_m_s": 2.5,
+    "stop_detected": false,
+    "dwell_s": 278
+   },
+   "ground_truth": {
+    "incident_type": "slip_and_fall",
+    "liability_read": "premises liability - maintenance/signage window",
+    "confidence": 0.89
+   },
+   "grader_matches_truth": true
+  },
+  {
+   "incident_id": "SYN-V-000025",
+   "site_id": "SITE-284",
+   "venue_type": "restaurant",
+   "timestamp": "2026-09-01T01:14:40Z",
+   "structured_events": 6,
+   "pixels_off_site": 0,
+   "signals": {
+    "hour": 1,
+    "zone": "restroom_corridor",
+    "max_speed_m_s": 2.2,
+    "stop_detected": true,
+    "dwell_s": 197
+   },
+   "ground_truth": {
+    "incident_type": "after_hours_intrusion",
+    "liability_read": "security negligence exposure - patrol gap",
+    "confidence": 0.96
+   },
+   "grader_matches_truth": true
+  },
+  {
+   "incident_id": "SYN-V-000026",
+   "site_id": "SITE-172",
+   "venue_type": "hospital",
+   "timestamp": "2026-09-09T21:32:58Z",
+   "structured_events": 9,
+   "pixels_off_site": 0,
+   "signals": {
+    "hour": 21,
+    "zone": "bar_area",
+    "max_speed_m_s": 2.7,
+    "stop_detected": true,
+    "dwell_s": 17
+   },
+   "ground_truth": {
+    "incident_type": "slip_and_fall",
+    "liability_read": "premises liability - maintenance/signage window",
+    "confidence": 0.88
+   },
+   "grader_matches_truth": true
+  },
+  {
+   "incident_id": "SYN-V-000027",
+   "site_id": "SITE-225",
+   "venue_type": "school",
+   "timestamp": "2026-09-03T09:52:05Z",
+   "structured_events": 7,
+   "pixels_off_site": 0,
+   "signals": {
+    "hour": 9,
+    "zone": "aisle",
+    "max_speed_m_s": 2.5,
+    "stop_detected": true,
+    "dwell_s": 109
+   },
+   "ground_truth": {
+    "incident_type": "slip_and_fall",
+    "liability_read": "premises liability - maintenance/signage window",
+    "confidence": 0.92
+   },
+   "grader_matches_truth": true
+  },
+  {
+   "incident_id": "SYN-V-000028",
+   "site_id": "SITE-336",
+   "venue_type": "corporate_hq",
+   "timestamp": "2026-09-03T08:43:16Z",
+   "structured_events": 6,
+   "pixels_off_site": 0,
+   "signals": {
+    "hour": 8,
+    "zone": "kitchen",
+    "max_speed_m_s": 1.9,
+    "stop_detected": false,
+    "dwell_s": 93
+   },
+   "ground_truth": {
+    "incident_type": "slip_and_fall",
+    "liability_read": "premises liability - maintenance/signage window",
+    "confidence": 0.94
+   },
+   "grader_matches_truth": true
+  },
+  {
+   "incident_id": "SYN-V-000029",
+   "site_id": "SITE-112",
+   "venue_type": "bar",
+   "timestamp": "2026-09-04T01:56:29Z",
+   "structured_events": 4,
+   "pixels_off_site": 0,
+   "signals": {
+    "hour": 1,
+    "zone": "parking",
+    "max_speed_m_s": 1.0,
+    "stop_detected": true,
+    "dwell_s": 85
+   },
+   "ground_truth": {
+    "incident_type": "after_hours_intrusion",
+    "liability_read": "security negligence exposure - patrol gap",
+    "confidence": 0.9
+   },
+   "grader_matches_truth": true
+  },
+  {
+   "incident_id": "SYN-V-000030",
+   "site_id": "SITE-757",
+   "venue_type": "bar",
+   "timestamp": "2026-09-06T04:51:35Z",
+   "structured_events": 7,
+   "pixels_off_site": 0,
+   "signals": {
+    "hour": 4,
+    "zone": "forklift_lane",
+    "max_speed_m_s": 1.2,
+    "stop_detected": true,
+    "dwell_s": 124
+   },
+   "ground_truth": {
+    "incident_type": "after_hours_intrusion",
+    "liability_read": "security negligence exposure - patrol gap",
+    "confidence": 0.9
+   },
+   "grader_matches_truth": true
+  },
+  {
+   "incident_id": "SYN-V-000031",
+   "site_id": "SITE-635",
+   "venue_type": "distribution_center",
+   "timestamp": "2026-09-04T16:27:25Z",
+   "structured_events": 5,
+   "pixels_off_site": 0,
+   "signals": {
+    "hour": 16,
+    "zone": "kitchen",
+    "max_speed_m_s": 1.8,
+    "stop_detected": false,
+    "dwell_s": 204
+   },
+   "ground_truth": {
+    "incident_type": "slip_and_fall",
+    "liability_read": "premises liability - maintenance/signage window",
+    "confidence": 0.95
+   },
+   "grader_matches_truth": true
+  },
+  {
+   "incident_id": "SYN-V-000032",
+   "site_id": "SITE-892",
+   "venue_type": "hotel",
+   "timestamp": "2026-09-03T13:29:11Z",
+   "structured_events": 11,
+   "pixels_off_site": 0,
+   "signals": {
+    "hour": 13,
+    "zone": "aisle",
+    "max_speed_m_s": 1.9,
+    "stop_detected": true,
+    "dwell_s": 130
+   },
+   "ground_truth": {
+    "incident_type": "slip_and_fall",
+    "liability_read": "premises liability - maintenance/signage window",
+    "confidence": 0.9
+   },
+   "grader_matches_truth": true
+  },
+  {
+   "incident_id": "SYN-V-000033",
+   "site_id": "SITE-256",
+   "venue_type": "bar",
+   "timestamp": "2026-09-06T01:14:10Z",
+   "structured_events": 9,
+   "pixels_off_site": 0,
+   "signals": {
+    "hour": 1,
+    "zone": "exit",
+    "max_speed_m_s": 3.0,
+    "stop_detected": true,
+    "dwell_s": 254
+   },
+   "ground_truth": {
+    "incident_type": "after_hours_intrusion",
+    "liability_read": "security negligence exposure - patrol gap",
+    "confidence": 0.91
+   },
+   "grader_matches_truth": true
+  },
+  {
+   "incident_id": "SYN-V-000034",
+   "site_id": "SITE-307",
+   "venue_type": "bar",
+   "timestamp": "2026-09-06T05:06:06Z",
+   "structured_events": 7,
+   "pixels_off_site": 0,
+   "signals": {
+    "hour": 5,
+    "zone": "exit",
+    "max_speed_m_s": 1.4,
+    "stop_detected": true,
+    "dwell_s": 208
+   },
+   "ground_truth": {
+    "incident_type": "slip_and_fall",
+    "liability_read": "premises liability - maintenance/signage window",
+    "confidence": 0.88
+   },
+   "grader_matches_truth": true
+  },
+  {
+   "incident_id": "SYN-V-000035",
+   "site_id": "SITE-870",
+   "venue_type": "school",
+   "timestamp": "2026-09-07T21:22:40Z",
+   "structured_events": 10,
+   "pixels_off_site": 0,
+   "signals": {
+    "hour": 21,
+    "zone": "bar_area",
+    "max_speed_m_s": 0.5,
+    "stop_detected": true,
+    "dwell_s": 187
+   },
+   "ground_truth": {
+    "incident_type": "slip_and_fall",
+    "liability_read": "premises liability - maintenance/signage window",
+    "confidence": 0.97
+   },
+   "grader_matches_truth": true
+  },
+  {
+   "incident_id": "SYN-V-000036",
+   "site_id": "SITE-469",
+   "venue_type": "hospital",
+   "timestamp": "2026-09-07T19:17:52Z",
+   "structured_events": 10,
+   "pixels_off_site": 0,
+   "signals": {
+    "hour": 19,
+    "zone": "restroom_corridor",
+    "max_speed_m_s": 3.0,
+    "stop_detected": false,
+    "dwell_s": 274
+   },
+   "ground_truth": {
+    "incident_type": "slip_and_fall",
+    "liability_read": "premises liability - maintenance/signage window",
+    "confidence": 0.95
+   },
+   "grader_matches_truth": true
+  },
+  {
+   "incident_id": "SYN-V-000037",
+   "site_id": "SITE-042",
+   "venue_type": "distribution_center",
+   "timestamp": "2026-09-08T05:15:37Z",
+   "structured_events": 8,
+   "pixels_off_site": 0,
+   "signals": {
+    "hour": 5,
+    "zone": "entrance",
+    "max_speed_m_s": 2.7,
+    "stop_detected": false,
+    "dwell_s": 158
+   },
+   "ground_truth": {
+    "incident_type": "slip_and_fall",
+    "liability_read": "premises liability - maintenance/signage window",
+    "confidence": 0.91
+   },
+   "grader_matches_truth": true
+  },
+  {
+   "incident_id": "SYN-V-000038",
+   "site_id": "SITE-364",
+   "venue_type": "bar",
+   "timestamp": "2026-09-04T20:03:39Z",
+   "structured_events": 13,
+   "pixels_off_site": 0,
+   "signals": {
+    "hour": 20,
+    "zone": "parking",
+    "max_speed_m_s": 2.5,
+    "stop_detected": false,
+    "dwell_s": 13
+   },
+   "ground_truth": {
+    "incident_type": "near_miss_pedestrian",
+    "liability_read": "safety program exposure - route crosses live lane",
+    "confidence": 0.94
+   },
+   "grader_matches_truth": true
+  },
+  {
+   "incident_id": "SYN-V-000039",
+   "site_id": "SITE-908",
+   "venue_type": "school",
+   "timestamp": "2026-09-07T12:56:40Z",
+   "structured_events": 11,
+   "pixels_off_site": 0,
+   "signals": {
+    "hour": 12,
+    "zone": "entrance",
+    "max_speed_m_s": 1.7,
+    "stop_detected": false,
+    "dwell_s": 291
+   },
+   "ground_truth": {
+    "incident_type": "slip_and_fall",
+    "liability_read": "premises liability - maintenance/signage window",
+    "confidence": 0.96
+   },
+   "grader_matches_truth": true
+  },
+  {
+   "incident_id": "SYN-V-000040",
+   "site_id": "SITE-403",
+   "venue_type": "hotel",
+   "timestamp": "2026-09-09T11:49:13Z",
+   "structured_events": 7,
+   "pixels_off_site": 0,
+   "signals": {
+    "hour": 11,
+    "zone": "entrance",
+    "max_speed_m_s": 0.5,
+    "stop_detected": true,
+    "dwell_s": 62
+   },
+   "ground_truth": {
+    "incident_type": "slip_and_fall",
+    "liability_read": "premises liability - maintenance/signage window",
+    "confidence": 0.89
+   },
+   "grader_matches_truth": true
+  },
+  {
+   "incident_id": "SYN-V-000041",
+   "site_id": "SITE-038",
+   "venue_type": "corporate_hq",
+   "timestamp": "2026-09-02T13:41:05Z",
+   "structured_events": 12,
+   "pixels_off_site": 0,
+   "signals": {
+    "hour": 13,
+    "zone": "kitchen",
+    "max_speed_m_s": 2.0,
+    "stop_detected": true,
+    "dwell_s": 256
+   },
+   "ground_truth": {
+    "incident_type": "slip_and_fall",
+    "liability_read": "premises liability - maintenance/signage window",
+    "confidence": 0.96
+   },
+   "grader_matches_truth": true
+  },
+  {
+   "incident_id": "SYN-V-000042",
+   "site_id": "SITE-892",
+   "venue_type": "bar",
+   "timestamp": "2026-09-06T20:53:06Z",
+   "structured_events": 5,
+   "pixels_off_site": 0,
+   "signals": {
+    "hour": 20,
+    "zone": "exit",
+    "max_speed_m_s": 1.7,
+    "stop_detected": true,
+    "dwell_s": 284
+   },
+   "ground_truth": {
+    "incident_type": "slip_and_fall",
+    "liability_read": "premises liability - maintenance/signage window",
+    "confidence": 0.9
+   },
+   "grader_matches_truth": true
+  },
+  {
+   "incident_id": "SYN-V-000043",
+   "site_id": "SITE-441",
+   "venue_type": "school",
+   "timestamp": "2026-09-08T06:27:39Z",
+   "structured_events": 4,
+   "pixels_off_site": 0,
+   "signals": {
+    "hour": 6,
+    "zone": "parking",
+    "max_speed_m_s": 3.1,
+    "stop_detected": true,
+    "dwell_s": 91
+   },
+   "ground_truth": {
+    "incident_type": "near_miss_pedestrian",
+    "liability_read": "safety program exposure - route crosses live lane",
+    "confidence": 0.95
+   },
+   "grader_matches_truth": true
+  },
+  {
+   "incident_id": "SYN-V-000044",
+   "site_id": "SITE-027",
+   "venue_type": "school",
+   "timestamp": "2026-09-03T22:31:24Z",
+   "structured_events": 4,
+   "pixels_off_site": 0,
+   "signals": {
+    "hour": 22,
+    "zone": "aisle",
+    "max_speed_m_s": 2.8,
+    "stop_detected": true,
+    "dwell_s": 53
+   },
+   "ground_truth": {
+    "incident_type": "slip_and_fall",
+    "liability_read": "premises liability - maintenance/signage window",
+    "confidence": 0.89
+   },
+   "grader_matches_truth": true
+  },
+  {
+   "incident_id": "SYN-V-000045",
+   "site_id": "SITE-363",
+   "venue_type": "restaurant",
+   "timestamp": "2026-09-02T09:54:46Z",
+   "structured_events": 8,
+   "pixels_off_site": 0,
+   "signals": {
+    "hour": 9,
+    "zone": "aisle",
+    "max_speed_m_s": 0.7,
+    "stop_detected": true,
+    "dwell_s": 156
+   },
+   "ground_truth": {
+    "incident_type": "slip_and_fall",
+    "liability_read": "premises liability - maintenance/signage window",
+    "confidence": 0.88
+   },
+   "grader_matches_truth": true
+  },
+  {
+   "incident_id": "SYN-V-000046",
+   "site_id": "SITE-803",
+   "venue_type": "retail",
+   "timestamp": "2026-09-05T07:47:30Z",
+   "structured_events": 4,
+   "pixels_off_site": 0,
+   "signals": {
+    "hour": 7,
+    "zone": "restroom_corridor",
+    "max_speed_m_s": 1.8,
+    "stop_detected": false,
+    "dwell_s": 104
+   },
+   "ground_truth": {
+    "incident_type": "slip_and_fall",
+    "liability_read": "premises liability - maintenance/signage window",
+    "confidence": 0.95
+   },
+   "grader_matches_truth": true
+  },
+  {
+   "incident_id": "SYN-V-000047",
+   "site_id": "SITE-436",
+   "venue_type": "corporate_hq",
+   "timestamp": "2026-09-05T10:50:19Z",
+   "structured_events": 8,
+   "pixels_off_site": 0,
+   "signals": {
+    "hour": 10,
+    "zone": "parking",
+    "max_speed_m_s": 2.4,
+    "stop_detected": true,
+    "dwell_s": 265
+   },
+   "ground_truth": {
+    "incident_type": "near_miss_pedestrian",
+    "liability_read": "safety program exposure - route crosses live lane",
+    "confidence": 0.96
+   },
+   "grader_matches_truth": true
+  },
+  {
+   "incident_id": "SYN-V-000048",
+   "site_id": "SITE-175",
+   "venue_type": "retail",
+   "timestamp": "2026-09-07T11:50:11Z",
+   "structured_events": 10,
+   "pixels_off_site": 0,
+   "signals": {
+    "hour": 11,
+    "zone": "kitchen",
+    "max_speed_m_s": 2.0,
+    "stop_detected": true,
+    "dwell_s": 209
+   },
+   "ground_truth": {
+    "incident_type": "slip_and_fall",
+    "liability_read": "premises liability - maintenance/signage window",
+    "confidence": 0.94
+   },
+   "grader_matches_truth": true
+  },
+  {
+   "incident_id": "SYN-V-000049",
+   "site_id": "SITE-257",
+   "venue_type": "restaurant",
+   "timestamp": "2026-09-01T14:05:12Z",
+   "structured_events": 6,
+   "pixels_off_site": 0,
+   "signals": {
+    "hour": 14,
+    "zone": "aisle",
+    "max_speed_m_s": 1.6,
+    "stop_detected": false,
+    "dwell_s": 19
+   },
+   "ground_truth": {
+    "incident_type": "slip_and_fall",
+    "liability_read": "premises liability - maintenance/signage window",
+    "confidence": 0.95
+   },
+   "grader_matches_truth": true
+  }
+ ]
+}
