@@ -137,9 +137,9 @@
 
 <h2>03 - Run it on your own files <span class="tag" style="font-size:10px;vertical-align:middle;border:1px solid var(--warn);color:var(--warn);border-radius:4px;padding:3px 8px;font-family:var(--mono)">ALPHA V0</span></h2>
 <div class="card">
-  <p style="color:var(--dim);font-size:14px;margin-bottom:12px">Not a canned story - real extraction. Drop a venue event-stream CSV (time, entity, zone, speed) - the metadata-only feed a site's cameras already emit. Your file is hashed and parsed here in the browser; nothing is uploaded. The record below is built from your bytes.</p>
-  <div id="vdrop" style="border:1px dashed var(--line);border-radius:10px;padding:22px;text-align:center;color:var(--dim);font-size:14px;cursor:pointer">Drop an event-stream CSV here - or click to choose a file</div>
-  <input type="file" id="vupl" accept=".csv" style="display:none">
+  <p style="color:var(--dim);font-size:14px;margin-bottom:12px">Not a canned story - real extraction. Drop a venue event-stream CSV (time, entity, zone, speed) - the metadata-only feed a site's cameras already emit - or the JSON event stream the shipped site agent writes (<span class="mono" style="color:var(--acc)">site_agent.py --demo out.jsonl</span>). Your file is hashed and parsed here in the browser; nothing is uploaded. The record below is built from your bytes.</p>
+  <div id="vdrop" style="border:1px dashed var(--line);border-radius:10px;padding:22px;text-align:center;color:var(--dim);font-size:14px;cursor:pointer">Drop an event stream here - a venue CSV (time, entity, zone, speed) or site-agent JSON output - or click to choose a file</div>
+  <input type="file" id="vupl" accept=".csv,.json,.jsonl" style="display:none">
   <div id="vlog" style="margin-top:12px;font-family:var(--mono);font-size:12.5px"></div>
   <div id="vrec" style="display:none;margin-top:16px">
     <div style="font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--acc);margin-bottom:10px">INCIDENT RECORD - BUILT FROM YOUR FILE</div>
@@ -342,15 +342,39 @@ async function exportRec(){
     if(T.length<4)return null;
     return {T,E,Z,S,n:T.length,duration:T[T.length-1]-T[0]};
   }
+  function parseAgentJSON(text){
+    const byEnt={};
+    for(const ln of text.split(/\r?\n/)){
+      const t=ln.trim();if(!t)continue;
+      let o;try{o=JSON.parse(t);}catch(e){return null;}
+      const ts=+o.ts,vel=+(o.vel!==undefined?o.vel:o.speed);
+      if(isNaN(ts)||isNaN(vel))return null;
+      const k=o.entity||'entity';
+      (byEnt[k]=byEnt[k]||[]).push({t:ts,z:(o.zone||''),s:vel});
+    }
+    const ids=Object.keys(byEnt);
+    if(!ids.length)return null;
+    let bestId=ids[0],bestDrop=0;
+    for(const id of ids){
+      const a=byEnt[id];a.sort((p,q)=>p.t-q.t);
+      let pk=0;
+      for(const e of a){const d=pk-e.s;if(d>bestDrop){bestDrop=d;bestId=id;}pk=Math.max(pk*0.98,e.s);}
+    }
+    const a=byEnt[bestId];
+    if(a.length<4)return null;
+    const t0=a[0].t;
+    return {T:a.map(e=>e.t-t0),E:a.map(()=>bestId),Z:a.map(e=>e.z),S:a.map(e=>e.s),n:a.length,duration:a[a.length-1].t-t0,entities:ids.length,picked:bestId};
+  }
   async function vhandle(f){
     log.innerHTML='';vrec.style.display='none';vRecord=null;
     const buf=await f.arrayBuffer();
     const h=hex(await crypto.subtle.digest('SHA-256',buf));
     log.innerHTML+=evrow('HASH',f.name+' - '+f.size+' bytes - sha256 '+h.slice(0,16)+'...');
-    if(!/\.csv$/i.test(f.name)){log.innerHTML+=evrow('SKIP','v0 parses CSV event streams only');return;}
-    const csv=parseCSV(new TextDecoder().decode(buf));
-    if(!csv){log.innerHTML+=evrow('ERR','could not parse - need time + speed columns (entity, zone optional)');return;}
-    log.innerHTML+=evrow('PARSE',csv.n+' events over '+csv.duration.toFixed(1)+'s');
+    const text=new TextDecoder().decode(buf);
+    let csv=/\.csv$/i.test(f.name)?parseCSV(text):parseAgentJSON(text);
+    if(!csv)csv=/\.csv$/i.test(f.name)?parseAgentJSON(text):parseCSV(text);
+    if(!csv){log.innerHTML+=evrow('ERR','could not parse - need a CSV with time + speed columns, or site-agent JSON-lines (ts, entity, zone, vel)');return;}
+    log.innerHTML+=evrow('PARSE',csv.n+' events over '+csv.duration.toFixed(1)+'s'+(csv.entities?' - '+csv.entities+' entities in stream, grading track: '+csv.picked:''));
     await vbuild(f,h,csv);
   }
   async function vbuild(f,h,csv){
